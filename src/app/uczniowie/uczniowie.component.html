@@ -1,0 +1,60 @@
+<div class="uczniowie-header">
+  <h2 class="uczniowie-header-text">
+    {{ sectionTitle }}
+  </h2>
+</div>
+<div class="uczniowie-content">
+  <button mat-raised-button class="add-student-button">
+    <mat-icon color="primary">add</mat-icon>
+    <span> Dodaj ucznia</span>
+  </button>
+
+  <mat-form-field class="table-search-input">
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Szukaj"
+    />
+  </mat-form-field>
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 students-table"
+  >
+    <ng-container matColumnDef="imie">
+      <mat-header-cell *matHeaderCellDef>Imie</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.imie }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nazwisko">
+      <mat-header-cell *matHeaderCellDef>Nazwisko</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.nazwisko }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="klasa">
+      <mat-header-cell *matHeaderCellDef>Klasa</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.klasa }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="wychowawca">
+      <mat-header-cell *matHeaderCellDef>Wychowawca</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.wychowawcaID }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="akcje">
+      <mat-header-cell *matHeaderCellDef>Akcje</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button>
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon color="warn">clear</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>

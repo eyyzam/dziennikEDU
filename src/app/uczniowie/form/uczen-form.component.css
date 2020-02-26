@@ -1,0 +1,13 @@
+.studentForm {
+  width: 100%;
+  margin: auto;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-dialog-container {
+  max-height: unset;
+  height: 100%;
+}

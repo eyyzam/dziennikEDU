@@ -1,0 +1,113 @@
+<h1 mat-dialog-title *ngIf="!isLoading">
+  <b
+    >{{ form_mode === "CREATE" ? "Nowy" : "Edycja Danych" }} Uczen
+    <i *ngIf="data.uczenID !== undefined" style="margin-left: 16px"
+      >[ {{ data.uczenID }}]</i
+    ></b
+  >
+</h1>
+<div
+  mat-dialog-content
+  style="max-height: unset; height: 90%;"
+  *ngIf="!isLoading"
+>
+  <form [formGroup]="studentForm" class="studentForm">
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        name="imie"
+        placeholder="Imie"
+        formControlName="uczenImie"
+        #imie
+      />
+      <mat-error *ngIf="studentForm.get('uczenImie')?.invalid"
+        >Imie nie spełnia wymagań</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        name="nazwisko"
+        placeholder="Nazwisko"
+        formControlName="uczenNazwisko"
+        #nazwisko
+      />
+      <mat-error *ngIf="studentForm.get('uczenNazwisko')?.invalid"
+        >Nazwisko nie spełnia wymagań</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        name="klasa"
+        placeholder="Klasa"
+        formControlName="uczenKlasa"
+        #klasa
+      >
+        <mat-option value="1 a T1">1 a T1</mat-option>
+        <mat-option value="2 a T2">2 a T2</mat-option>
+        <mat-option value="2 a T3">3 a T3</mat-option>
+      </mat-select>
+      <mat-error *ngIf="studentForm.get('uczenKlasa')?.invalid"
+        >Klasa się nie zgadza</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="number"
+        matInput
+        name="numerWDzienniku"
+        placeholder="Numer w dzienniku"
+        formControlName="uczenNumerWDzienniku"
+        #numerWDzienniku
+      />
+      <mat-error *ngIf="studentForm.get('uczenNumerWDzienniku')?.invalid"
+        >Numer dziennika jest nieprawidłowy</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        name="szkola"
+        placeholder="Szkoła"
+        formControlName="uczenSzkolaID"
+        #szkola
+      >
+        <mat-option value="WSEI"
+          >Wyższa Szkoła Ekonomii I Informatyki w Krakowie</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="studentForm.get('uczenSzkolaID')?.invalid"
+        >Nieprawidłowa szkoła</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        name="wychowawca"
+        placeholder="Wychowawca"
+        formControlName="uczenWychowawcaID"
+        #wychowawca
+      >
+        <mat-option value="32489hsd">Grzegorz Hajduk</mat-option>
+      </mat-select>
+      <mat-error *ngIf="studentForm.get('uczenWychowawcaID')?.invalid"
+        >Nieprawidłowy wychowawca</mat-error
+      >
+    </mat-form-field>
+    <mat-slide-toggle
+      formControlName="uczenStatus"
+      placeholder="Uczeń aktywny"
+      #status
+      checked="true"
+      color="primary"
+    >
+      Aktywny</mat-slide-toggle
+    >
+  </form>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onUczenSubmit()">
+      Potwierdź
+    </button>
+    <button mat-raised-button (click)="onCancel()">Anuluj</button>
+  </div>
+</div>

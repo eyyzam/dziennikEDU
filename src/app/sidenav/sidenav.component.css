@@ -3,6 +3,10 @@ mat-toolbar,
   background-color: #192d3e;
 }
 
+.logo-toolbar-span {
+  margin-left: 8px;
+}
+
 .icon-white {
   color: #f5f5f5;
 }

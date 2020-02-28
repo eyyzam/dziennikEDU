@@ -10,6 +10,8 @@ import {
   trigger
 } from "@angular/animations";
 import { MatTableDataSource } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { UczenFormComponent } from "./form/uczen-form.component";
 
 @Component({
   selector: "app-uczniowie",
@@ -27,13 +29,11 @@ import { MatTableDataSource } from "@angular/material";
   ]
 })
 export class UczniowieComponent implements OnInit, OnDestroy {
-  constructor(private uczenService: uczenService) {}
+  constructor(private dialog: MatDialog, private uczenService: uczenService) {}
 
   sectionTitle: string = "Zarządzanie uczniami";
   uczenArraySub: Subscription;
   uczenArray: Uczen[];
-  columnsToDisplay = ["imie"];
-
   displayedColumns: string[] = [
     "imie",
     "nazwisko",
@@ -52,6 +52,27 @@ export class UczniowieComponent implements OnInit, OnDestroy {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  newStudent() {
+    this.dialog.open(UczenFormComponent, {
+      maxHeight: "70vw",
+      data: {
+        uczenID: undefined
+      }
+    });
+  }
+
+  editStudent(uczen: Uczen) {
+    this.dialog.open(UczenFormComponent, {
+      width: "1000px",
+      height: "600px",
+      data: uczen
+    });
+  }
+
+  makeStudentStatusUnactive(uczen: Uczen) {
+    console.log(uczen.uczenID);
   }
 
   ngOnDestroy() {

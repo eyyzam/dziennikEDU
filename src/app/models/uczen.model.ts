@@ -6,6 +6,7 @@ export class Uczen {
     public klasa: string,
     public numerWDzienniku: number,
     public szkolaID: string,
-    public wychowawcaID: string
+    public wychowawcaID: string,
+    public status: boolean
   ) {}
 }

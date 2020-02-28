@@ -1,55 +1,72 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <span>
-      <img src="assets/logo.png" alt="" width="228" height="64" />
-    </span>
-    <span>
-      <button mat-icon-button>
-        <mat-icon class="icon-white">menu</mat-icon>
-      </button>
+    <span class="logo-toolbar-span">
+      <img src="assets/logo.png" alt="" width="256" height="64" />
     </span>
   </mat-toolbar-row>
 </mat-toolbar>
-<div class="logged-user-data">
-  <h3 class="user-name">Andrzej Bronisławski</h3>
-  <h5 class="user-email">eazymen789@gmail.com</h5>
+<div *ngIf="auth.userData as user">
+  <div class="logged-user-data">
+    <h3 class="user-name">
+      {{ user.displayName ? user.displayName : "User" }}
+    </h3>
+    <h5 class="user-email">{{ user.email }}</h5>
+  </div>
+  <div class="user-photo-div">
+    <img
+      class="user-photo"
+      src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
+      alt=""
+    />
+  </div>
 </div>
-<div class="user-photo-div">
-  <img class="user-photo" src="assets/jaxd.jpg" alt="" />
+<div *ngIf="!auth.userData">
+  <div class="logged-user-data">
+    <h3 class="user-name">
+      User not logged in
+    </h3>
+    <h5 class="user-email"></h5>
+  </div>
+  <div class="user-photo-div">
+    <img class="user-photo" src="assets/dummy-user.png" alt="" />
+  </div>
 </div>
-<div class="nav-list">
+<div class="nav-list" *ngIf="!isLoading">
   <mat-list>
-    <mat-list-item>
+    <mat-list-item routerLink="" *ngIf="userRoles.student">
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">bookmarks</mat-icon>
         <span class="nav-button-text icon-white">Moje oceny</span>
       </button>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item *ngIf="userRoles.student">
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">assignment</mat-icon>
         <span class="nav-button-text icon-white">Frekwencja</span>
       </button>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item *ngIf="userRoles.student">
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">email</mat-icon>
         <span class="nav-button-text icon-white">Wiadomości</span>
       </button>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item *ngIf="userRoles.student">
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">announcement</mat-icon>
         <span class="nav-button-text icon-white">Ogłoszenia</span>
       </button>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item *ngIf="userRoles.student">
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">calendar_today</mat-icon>
         <span class="nav-button-text icon-white">Terminarz</span>
       </button>
     </mat-list-item>
-    <mat-list-item class="list-section-bottom-divider">
+    <mat-list-item
+      class="list-section-bottom-divider"
+      *ngIf="userRoles.student"
+    >
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">work</mat-icon>
         <span class="nav-button-text icon-white">Zadania domowe</span>
@@ -68,35 +85,56 @@
         <span class="nav-button-text icon-white">Ustawienia</span>
       </button>
     </mat-list-item>
-    <mat-list-item class="list-section-bottom-divider">
+    <mat-list-item class="list-section-bottom-divider" (click)="auth.SignOut()">
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">remove_circle_outline</mat-icon>
         <span class="nav-button-text icon-white">Wyloguj</span>
       </button>
     </mat-list-item>
-    <b class="nav-list-header">PANEL DYREKTORSKI</b>
-    <mat-list-item class="list-section-top-divider">
+    <b class="nav-list-header" *ngIf="userRoles.admin"
+      >PANEL DYREKTORSKI</b
+    >
+    <mat-list-item
+      class="list-section-top-divider"
+      *ngIf="userRoles.admin"
+    >
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">view_module</mat-icon>
         <span class="nav-button-text icon-white">Zarządzanie kadrą</span>
       </button>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item *ngIf="userRoles.admin">
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">schedule</mat-icon>
         <span class="nav-button-text icon-white">Plany Zajęć</span>
       </button>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item routerLink="/uczniowie" *ngIf="userRoles.admin">
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">people_alt</mat-icon>
         <span class="nav-button-text icon-white">Zarządzanie uczniami</span>
       </button>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item
+      class="list-section-bottom-divider"
+      *ngIf="userRoles.admin"
+    >
       <button mat-button class="nav-button">
         <mat-icon class="icon-white">star</mat-icon>
         <span class="nav-button-text icon-white">Panel ogłoszeń</span>
+      </button>
+    </mat-list-item>
+    <b class="nav-list-header" *ngIf="userRoles.admin"
+      >PANEL ADMINISTRACYJNY</b
+    >
+    <mat-list-item
+      class="list-section-top-divider"
+      routerLink="/user/register"
+      *ngIf="userRoles.admin"
+    >
+      <button mat-button class="nav-button">
+        <mat-icon class="icon-white">add</mat-icon>
+        <span class="nav-button-text icon-white">Rejestracja uczniów</span>
       </button>
     </mat-list-item>
   </mat-list>

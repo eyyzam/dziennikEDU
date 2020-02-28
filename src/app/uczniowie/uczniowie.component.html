@@ -4,7 +4,7 @@
   </h2>
 </div>
 <div class="uczniowie-content">
-  <button mat-raised-button class="add-student-button">
+  <button mat-raised-button class="add-student-button" (click)="newStudent()">
     <mat-icon color="primary">add</mat-icon>
     <span> Dodaj ucznia</span>
   </button>
@@ -45,10 +45,10 @@
     <ng-container matColumnDef="akcje">
       <mat-header-cell *matHeaderCellDef>Akcje</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="editStudent(element)">
           <mat-icon color="primary">edit</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="makeStudentStatusUnactive(element)">
           <mat-icon color="warn">clear</mat-icon>
         </button>
       </mat-cell>

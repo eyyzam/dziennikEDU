@@ -1,0 +1,66 @@
+<div class="login-header">
+  <h2 class="login-header-text">
+    {{ sectionTitle }}
+  </h2>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="center center" *ngIf="isLoading">
+  <div fxFlex="100" class="progess-spinner">
+    <mat-spinner [diameter]="100"></mat-spinner>
+  </div>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div fxFlex.fxLayoutAlign.gt-sm="50" fxFlex.lt-md="100">
+    <form [formGroup]="loginForm" class="loginForm">
+      <mat-form-field>
+        <input
+          type="email"
+          matInput
+          name="email"
+          placeholder="E-Mail"
+          formControlName="userEmail"
+          #email
+        />
+        <mat-error *ngIf="loginForm.get('userEmail')?.invalid"
+          >E-Mail jest nieprawidłowy</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="password"
+          matInput
+          name="password"
+          placeholder="Hasło"
+          formControlName="userPassword"
+          #password
+        />
+        <mat-error *ngIf="loginForm.get('userPassword')?.invalid"
+          >Hasło nie spełnia wymagań</mat-error
+        >
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onUserRegister()"
+        class="form-submit-button"
+      >
+        Zaloguj się
+      </button>
+      <button
+        mat-raised-button
+        (click)="continueWithGoogle()"
+        class="form-submit-button"
+      >
+        <img src="assets/google-icon.png" width="20" height="20" />
+        <span> Continue with Google</span>
+      </button>
+      <div class="forgot-password">
+        <p>
+          Zapomniałeś hasła?
+          <a routerLink="/user/forgot-password"> Kliknij tutaj</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

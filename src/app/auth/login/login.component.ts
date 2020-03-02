@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { authService } from "../auth.service";
+import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   isLoading: boolean = false;
   loginForm: FormGroup;
 
-  constructor(private authService: authService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -25,12 +26,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onUserRegister() {
+  onUserLogin() {
     if (this.loginForm.invalid) return;
-    this.authService.SignIn(
-      this.loginForm.value.userEmail,
-      this.loginForm.value.userPassword
-    );
+    this.authService
+      .SignIn(this.loginForm.value.userEmail, this.loginForm.value.userPassword)
+      .then(() => {
+        if (this.authService.isLoggedIn) {
+          this.router.navigate(["oceny"]);
+        }
+      });
   }
 
   continueWithGoogle() {

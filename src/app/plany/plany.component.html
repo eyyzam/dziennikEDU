@@ -1,0 +1,18 @@
+<div class="plan-header">
+  <h2 class="plan-header-text">
+    {{ sectionTitle }}
+  </h2>
+</div>
+<div class="plan-content">
+  <mat-form-field class="select-class">
+    <mat-select
+      placeholder="Wybierz Klasę"
+      (valueChange)="getClass(klasa.value)"
+      #klasa
+    >
+      <mat-option *ngFor="let class of classArray" [value]="class.name"
+        >{{ class.name }} ( {{ class.description }} )</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</div>

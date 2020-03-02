@@ -7,6 +7,6 @@ export class User {
     public displayName: string,
     public photoURL: string,
     public emailVerified: boolean,
-    public roles: Roles
+    public roles?: Roles
   ) {}
 }

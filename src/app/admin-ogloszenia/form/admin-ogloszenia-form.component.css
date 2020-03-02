@@ -1,0 +1,22 @@
+.add-notification-button {
+  margin-top: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-dialog-content {
+  max-height: unset;
+  max-height: 100%;
+  height: 100%;
+}
+
+.notificationStatusSlider {
+  margin: 16px 0 16px 0;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 200px !important;
+  border: 1px solid black;
+}

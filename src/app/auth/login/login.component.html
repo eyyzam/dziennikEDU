@@ -42,7 +42,7 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="onUserRegister()"
+        (click)="onUserLogin()"
         class="form-submit-button"
       >
         Zaloguj się
@@ -53,12 +53,19 @@
         class="form-submit-button"
       >
         <img src="assets/google-icon.png" width="20" height="20" />
-        <span> Continue with Google</span>
+        <span> Kontynuuj przy użyciu Google</span>
       </button>
       <div class="forgot-password">
         <p>
           Zapomniałeś hasła?
           <a routerLink="/user/forgot-password"> Kliknij tutaj</a>
+        </p>
+        <p class="login-text">
+          Jeżeli nie zweryfikowałeś swojego adresu E-Mail nie będziesz sie w
+          stanie zalogować do serwisu
+        </p>
+        <p class="login-text">
+          Jeżeli konto Google nie jest aktywowane proszę aktywować konto Google
         </p>
       </div>
     </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { authService } from "../auth.service";
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: "app-verify",
@@ -10,5 +10,5 @@ export class VerifyEmailComponent {
   sectionTitle: string = "Zweryfikuj swój Email";
   isLoading: boolean = false;
 
-  constructor(private authService: authService) {}
+  constructor(private authService: AuthService) {}
 }

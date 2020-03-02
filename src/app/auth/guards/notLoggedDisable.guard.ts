@@ -11,17 +11,16 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root"
 })
-export class LoggedInGuard implements CanActivate {
+export class SecureInnerPagesGuard implements CanActivate {
   constructor(public authService: AuthService, public router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isLoggedIn !== true) {
-      this.router.navigate(["/user/login"]);
+    if (this.authService.isLoggedIn === true) {
+      this.router.navigate(["/oceny"]);
     }
-
     return true;
   }
 }

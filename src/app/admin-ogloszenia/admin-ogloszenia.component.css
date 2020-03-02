@@ -1,0 +1,31 @@
+.admin-notifications-header {
+  background: linear-gradient(to right, #122230 0%, #192d3e 100%);
+  height: 70px;
+}
+
+.admin-notifications-header-text {
+  padding: 20px 0 10px 32px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.admin-notifications-content {
+  width: 95%;
+  margin: 16px 0 16px 2.5%;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 200px !important;
+}
+
+:host ::ng-deep .notification-editor > .ck.ck-toolbar {
+  display: none;
+}
+
+.notification-button {
+  margin-top: 32px;
+}
+
+.delete-button {
+  margin-left: 8px;
+}

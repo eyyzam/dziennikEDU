@@ -19,7 +19,7 @@ mat-toolbar,
   font-weight: 400;
 }
 
-.user-email {
+.user-role {
   margin: 8px 0 0 0;
   padding-bottom: 54px;
   color: #ffffff;
@@ -80,4 +80,19 @@ mat-list-item {
 
 ::ng-deep ::-webkit-scrollbar {
   width: 0;
+}
+
+.role-student {
+  font-weight: bold;
+  color: lightskyblue;
+}
+
+.role-teacher {
+  font-weight: bold;
+  color: yellow;
+}
+
+.role-admin {
+  font-weight: bold;
+  color: red;
 }

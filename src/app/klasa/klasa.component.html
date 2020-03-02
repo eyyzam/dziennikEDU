@@ -1,0 +1,155 @@
+<div class="classes-header">
+  <h2 class="classes-header-text">
+    {{ sectionTitle }}
+  </h2>
+</div>
+<div class="class-content" fxLayout="column">
+  <div fxFlex="100">
+    <button
+      mat-raised-button
+      class="add-class-button"
+      (click)="newClassFormVisible = !newClassFormVisible"
+      *ngIf="!newClassFormVisible"
+    >
+      <mat-icon color="primary">add</mat-icon>
+      <span> Stwórz nową Klasę</span>
+    </button>
+    <mat-form-field class="select-class" *ngIf="!newClassFormVisible">
+      <mat-select
+        placeholder="Wybierz Klasę"
+        (valueChange)="bee(klasa.value)"
+        #klasa
+      >
+        <mat-option *ngFor="let class of classArray" [value]="class.name">{{
+          class.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="add-class-button"
+      (click)="newClassFormVisible = !newClassFormVisible"
+      *ngIf="newClassFormVisible"
+    >
+      <mat-icon color="primary">undo</mat-icon>
+      <span> Anuluj</span>
+    </button>
+  </div>
+  <div fxFlex="100" *ngIf="newClassFormVisible">
+    <mat-expansion-panel opened>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Tworzenie nowej klasy
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form [formGroup]="classForm" class="classForm">
+        <mat-form-field class="form">
+          <input
+            type="text"
+            matInput
+            name="name"
+            placeholder="Nazwa Klasy"
+            formControlName="className"
+            #name
+          />
+          <mat-error *ngIf="classForm.get('className')?.invalid"
+            >Nazwa klasy jest nieprawidłowa</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="form">
+          <input
+            type="text"
+            matInput
+            name="description"
+            placeholder="Opis"
+            formControlName="classDescription"
+            #nazwisko
+          />
+          <mat-error *ngIf="classForm.get('classDescription')?.invalid"
+            >Opis klasy jest nieprawidłowy</mat-error
+          >
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="onClassSubmit()">
+          Potwierdź
+        </button>
+      </form>
+    </mat-expansion-panel>
+  </div>
+  <div fxFlex="100" class="classDisplay" *ngIf="classSelected">
+    <h3 class="list-of-students">
+      Uczniowie którzy należą do klasy: {{ selectedClassID }}
+    </h3>
+    <mat-list class="display-students">
+      <mat-list-item
+        *ngFor="let student of fetchedClassStudents; let i = index"
+      >
+        <mat-icon
+          mat-list-icon
+          color="warn"
+          (click)="removeFromClassStudents(student, selectedClassID)"
+          >delete</mat-icon
+        >
+        <h4 mat-line>
+          #{{ +i + 1 }} - {{ student.imie }} {{ student.nazwisko }}
+        </h4>
+        <p mat-line>
+          {{ student.status === true ? "Uczeń Aktywny" : "Uczeń Nieaktywny" }}
+        </p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div fxFlex="100" class="listOfStudents" *ngIf="classSelected">
+    <h3 class="add-students-to-class-h3">Dodawanie uczniów</h3>
+    <mat-form-field class="table-search-input">
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Szukaj"
+      />
+    </mat-form-field>
+
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 students-table"
+    >
+      <ng-container matColumnDef="imie">
+        <mat-header-cell *matHeaderCellDef>Imie</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.imie }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nazwisko">
+        <mat-header-cell *matHeaderCellDef>Nazwisko</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.nazwisko }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="klasa">
+        <mat-header-cell *matHeaderCellDef>Klasa</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.klasa }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="wychowawca">
+        <mat-header-cell *matHeaderCellDef>Wychowawca</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{
+          element.wychowawcaID
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="akcje">
+        <mat-header-cell *matHeaderCellDef>Akcje</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            (click)="addStudentToClass(element, selectedClassID)"
+          >
+            <mat-icon color="primary">add</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </table>
+  </div>
+</div>

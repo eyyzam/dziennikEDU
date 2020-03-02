@@ -5,20 +5,21 @@
       opened
       [fixedInViewport]="true"
       class="sidenav"
+      *ngIf="auth.isLoggedIn"
       #sidenav
     >
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
       <mat-toolbar>
-        <span>
-          <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-          </button>
-        </span>
         <span class="toolbar-fill"> </span>
         <span>
-          <button mat-button [matMenuTriggerFor]="menu" alt="loggedUserMenu">
+          <button
+            mat-button
+            [matMenuTriggerFor]="menu"
+            alt="loggedUserMenu"
+            *ngIf="auth.isLoggedIn"
+          >
             <span>Andrzej Bronisławski</span>
             <mat-icon>keyboard_arrow_down</mat-icon>
           </button>

@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 
 // Angular Material Modules
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -23,6 +24,8 @@ import { MatTableModule } from "@angular/material/table";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 // Components
 import { AppComponent } from "./app.component";
@@ -31,6 +34,14 @@ import { UczenFormComponent } from "./uczniowie/form/uczen-form.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { VerifyEmailComponent } from "./auth/verify-email/verify-email.component";
+import { KadraComponent } from "./kadra/kadra.component";
+import { KadraFormComponent } from "./kadra/form/kadra-form.component";
+import { KlasaComponent } from "./klasa/klasa.component";
+import { PlanyComponent } from "./plany/plany.component";
+import { MojeOcenyComponent } from "./oceny/oceny.component";
+import { UczniowieComponent } from "./uczniowie/uczniowie.component";
+import { AdminOgloszeniaComponent } from "./admin-ogloszenia/admin-ogloszenia.component";
+import { AdminOgloszeniaFormComponent } from "./admin-ogloszenia/form/admin-ogloszenia-form.component";
 
 // Environment variables
 import { environment } from "../environments/environment";
@@ -39,14 +50,16 @@ import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-import { MojeOcenyComponent } from "./oceny/oceny.component";
-import { UczniowieComponent } from "./uczniowie/uczniowie.component";
 
 // Services
 import { uczenService } from "./uczniowie/uczniowie.service";
-import { authService } from "./auth/auth.service";
+import { AuthService } from "./auth/auth.service";
+import { KadraService } from "./kadra/kadra.service";
+import { KlasaService } from "./klasa/klasa.service";
+import { OgloszenieService } from "./admin-ogloszenia/ogloszenia.service";
 
 // Guards
+import { SecureInnerPagesGuard } from "./auth/guards/notLoggedDisable.guard";
 import { StudentGuard } from "./auth/guards/student.guard";
 import { NauczycielGuard } from "./auth/guards/nauczyciel.guard";
 import { AdminGuard } from "./auth/guards/admin.guard";
@@ -60,7 +73,13 @@ import { AdminGuard } from "./auth/guards/admin.guard";
     UczenFormComponent,
     RegisterComponent,
     LoginComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    KadraComponent,
+    KadraFormComponent,
+    KlasaComponent,
+    PlanyComponent,
+    AdminOgloszeniaComponent,
+    AdminOgloszeniaFormComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +106,10 @@ import { AdminGuard } from "./auth/guards/admin.guard";
     MatMenuModule,
     MatSlideToggleModule,
     MatSnackBarModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+
+    CKEditorModule,
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -95,12 +118,20 @@ import { AdminGuard } from "./auth/guards/admin.guard";
   ],
   providers: [
     uczenService,
-    authService,
+    AuthService,
+    SecureInnerPagesGuard,
     StudentGuard,
     NauczycielGuard,
-    AdminGuard
+    AdminGuard,
+    KadraService,
+    KlasaService,
+    OgloszenieService
   ],
-  entryComponents: [UczenFormComponent],
+  entryComponents: [
+    UczenFormComponent,
+    KadraFormComponent,
+    AdminOgloszeniaFormComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

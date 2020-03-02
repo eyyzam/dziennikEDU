@@ -65,8 +65,7 @@ export class UczniowieComponent implements OnInit, OnDestroy {
 
   editStudent(uczen: Uczen) {
     this.dialog.open(UczenFormComponent, {
-      width: "1000px",
-      height: "600px",
+      maxHeight: "70vw",
       data: uczen
     });
   }

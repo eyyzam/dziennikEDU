@@ -1,0 +1,22 @@
+::ng-deep .mat-dialog-actions {
+  margin: 0;
+}
+
+.pracownikForm {
+  width: 100%;
+  margin: auto;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-dialog-content {
+  max-height: unset;
+  max-height: 100%;
+  height: 100%;
+}
+
+.employee-status-slider {
+  margin-left: 16px;
+}

@@ -1,0 +1,16 @@
+{
+  "MR8SkZxuWsMfQ3fhxGFeNpnZa143": {
+    "roles": {
+      "student": false,
+      "nauczyciel": false,
+      "admin": true
+    }
+  },
+  "5csXajJoPaMHj1dQaRxs9vc7HYK2": {
+    "roles": {
+      "student": true,
+      "nauczyciel": false,
+      "admin": false
+    }
+  }
+}

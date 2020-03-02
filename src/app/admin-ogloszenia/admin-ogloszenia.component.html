@@ -1,0 +1,53 @@
+<div class="admin-notifications-header">
+  <h2 class="admin-notifications-header-text">
+    {{ sectionTitle }}
+  </h2>
+</div>
+<div class="admin-notifications-content">
+  <button
+    mat-raised-button
+    class="add-notification-button"
+    (click)="dodajOgloszenie()"
+  >
+    <mat-icon color="primary">add</mat-icon>
+    <span> Dodaj Ogłoszenie</span>
+  </button>
+
+  <h3>Lista Ogłoszeń</h3>
+  <mat-expansion-panel *ngFor="let ogloszenie of ogloszeniaArray">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <b
+          >[{{
+            ogloszenie.ogloszenieAktywne === true ? "AKTYWNE" : "NIEAKTYWNE"
+          }}] - {{ ogloszenie.ogloszenieTytul }}</b
+        >
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ckeditor
+      [editor]="Editor"
+      [data]="ogloszenie.ogloszenieContent"
+      disabled="true"
+      (ready)="onReady($event)"
+      class="notification-editor"
+    ></ckeditor>
+
+    <div class="notification-button">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="editOgloszenie(ogloszenie)"
+      >
+        EDIT
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="onOgloszenieRemove(ogloszenie)"
+        class="delete-button"
+      >
+        DELETE
+      </button>
+    </div>
+  </mat-expansion-panel>
+</div>

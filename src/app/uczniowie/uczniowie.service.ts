@@ -44,7 +44,7 @@ export class uczenService {
     return uczniowieCollection.add({
       imie: data.imie,
       nazwisko: data.nazwisko,
-      klasa: data.klasa,
+      klasa: null,
       numerWDzienniku: data.numerWDzienniku,
       szkolaID: data.szkolaID,
       wychowawcaID: data.wychowawcaID,

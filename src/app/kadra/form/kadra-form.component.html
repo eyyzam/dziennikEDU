@@ -1,0 +1,84 @@
+<h1 mat-dialog-title *ngIf="!isLoading">
+  <b
+    >{{
+      form_mode === "CREATE" ? "Nowy Pracownik" : "Edycja Danych Pracownika"
+    }}
+    <i *ngIf="data.pracownikID !== undefined" style="margin-left: 16px"
+      >[ {{ data.pracownikID }}]</i
+    ></b
+  >
+</h1>
+<div
+  mat-dialog-content
+  style="max-height: unset; height: 90%;"
+  *ngIf="!isLoading"
+>
+  <form [formGroup]="pracownikForm" class="pracownikForm">
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        name="imie"
+        placeholder="Imie"
+        formControlName="pracownikImie"
+        #imie
+      />
+      <mat-error *ngIf="pracownikForm.get('pracownikImie')?.invalid"
+        >Imie nie spełnia wymagań</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        name="nazwisko"
+        placeholder="Nazwisko"
+        formControlName="pracownikNazwisko"
+        #nazwisko
+      />
+      <mat-error *ngIf="pracownikForm.get('pracownikNazwisko')?.invalid"
+        >Nazwisko nie spełnia wymagań</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        name="szkola"
+        placeholder="Szkoła"
+        formControlName="pracownikSzkolaID"
+        #szkola
+      >
+        <mat-option value="WSEI"
+          >Wyższa Szkoła Ekonomii I Informatyki w Krakowie</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="pracownikForm.get('pracownikSzkolaID')?.invalid"
+        >Nieprawidłowa szkoła</mat-error
+      >
+    </mat-form-field>
+    <mat-slide-toggle
+      formControlName="pracownikPedagog"
+      placeholder="Pedagog"
+      #pedagog
+      ckecked="false"
+      color="primary"
+    >
+      Pedagog</mat-slide-toggle
+    >
+    <mat-slide-toggle
+      formControlName="pracownikStatus"
+      placeholder="Pracownik aktywny"
+      #status
+      checked="true"
+      color="primary"
+      class="employee-status-slider"
+    >
+      Aktywny</mat-slide-toggle
+    >
+  </form>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onPracownikSubmit()">
+      Potwierdź
+    </button>
+    <button mat-raised-button (click)="onCancel()">Anuluj</button>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>
+  <b
+    >{{ form_mode === "CREATE" ? "Nowe Ogloszenie" : "Edycja Ogłoszenia" }}
+    <i *ngIf="data.ogloszenieID !== undefined" style="margin-left: 16px"
+      >[ {{ data.ogloszenieID }}]</i
+    ></b
+  >
+</h1>
+<div mat-dialog-content style="max-height: unset; height: 90%;">
+  <form [formGroup]="ogloszenieForm" class="ogloszenieForm">
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        name="tytul"
+        placeholder="Tytuł"
+        formControlName="ogloszenieTytul"
+        #tytul
+      />
+      <mat-error *ngIf="ogloszenieForm.get('ogloszenieTytul')?.invalid"
+        >Tytuł nie spełnia wymagań</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        name="odbiorcy"
+        placeholder="Grupa odbiorców"
+        formControlName="ogloszenieGrupaOdbiorcow"
+        #odbiorcy
+      >
+        <mat-option value="ADMIN">Administratorzy</mat-option>
+        <mat-option value="TEACHER">
+          Nauczyciele
+        </mat-option>
+        <mat-option value="STUDENTS">Uczniowie</mat-option>
+      </mat-select>
+      <mat-error *ngIf="ogloszenieForm.get('ogloszenieGrupaOdbiorcow')?.invalid"
+        >Nieprawidłowe grono odbiorców</mat-error
+      >
+    </mat-form-field>
+    <mat-slide-toggle
+      formControlName="ogloszenieAktywne"
+      placeholder="Ogłoszenie aktywne"
+      #aktywne
+      ckecked="false"
+      color="primary"
+      class="notificationStatusSlider"
+    >
+      Ogłoszenie aktywne</mat-slide-toggle
+    >
+  </form>
+  <ckeditor
+    [editor]="Editor"
+    data="{{ ogloszenieContent }}"
+    [(ngModel)]="ogloszenieContent"
+    (ready)="onReady($event)"
+  ></ckeditor>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onOgloszenieSubmit()">
+      Potwierdź
+    </button>
+    <button mat-raised-button (click)="onCancel()">Anuluj</button>
+  </div>
+</div>

@@ -36,7 +36,7 @@ Zarządzanie uczniami      |  Logowanie do aplikacji
 
 Tworzenie / Modyfikacja ucznia      |  Panel boczny ucznia     
 :-------------------------:|:-------------------------:
-<img src="https://user-images.githubusercontent.com/59890819/75770463-41220b00-5d48-11ea-9c93-4a2d5fddcf88.PNG" width="200" alt=""> | <img src="https://user-images.githubusercontent.com/59890819/75770471-441cfb80-5d48-11ea-8330-79cfdc225f8a.PNG" width="200" alt=""> 
+<img src="https://user-images.githubusercontent.com/59890819/75770463-41220b00-5d48-11ea-9c93-4a2d5fddcf88.PNG" width="200" alt=""> | <img src="https://user-images.githubusercontent.com/59890819/75770471-441cfb80-5d48-11ea-8330-79cfdc225f8a.PNG" width="50" height="100" alt=""> 
 
 ## Żeby uruchomić appkę u siebie należy: 
 

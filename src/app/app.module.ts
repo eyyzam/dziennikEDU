@@ -42,6 +42,7 @@ import { MojeOcenyComponent } from "./oceny/oceny.component";
 import { UczniowieComponent } from "./uczniowie/uczniowie.component";
 import { AdminOgloszeniaComponent } from "./admin-ogloszenia/admin-ogloszenia.component";
 import { AdminOgloszeniaFormComponent } from "./admin-ogloszenia/form/admin-ogloszenia-form.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 // Environment variables
 import { environment } from "../environments/environment";
@@ -79,7 +80,8 @@ import { AdminGuard } from "./auth/guards/admin.guard";
     KlasaComponent,
     PlanyComponent,
     AdminOgloszeniaComponent,
-    AdminOgloszeniaFormComponent
+    AdminOgloszeniaFormComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

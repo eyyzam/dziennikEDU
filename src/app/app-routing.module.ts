@@ -9,6 +9,7 @@ import { KadraComponent } from "./kadra/kadra.component";
 import { KlasaComponent } from "./klasa/klasa.component";
 import { PlanyComponent } from "./plany/plany.component";
 import { AdminOgloszeniaComponent } from "./admin-ogloszenia/admin-ogloszenia.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 // Guards
 import { StudentGuard } from "./auth/guards/student.guard";
@@ -27,6 +28,11 @@ const routes: Routes = [
     path: "oceny",
     component: MojeOcenyComponent,
     canActivate: [LoggedInGuard, StudentGuard]
+  },
+  {
+    path: "profile",
+    component: ProfileComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: "uczniowie",

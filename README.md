@@ -1,27 +1,45 @@
-# DziennikEDU
+# dziennikEDU+
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
+Technologie użyte do napisania aplikacji:
+- Angular v7.2.0
+- Angular Material v7.3.7
+- Firebase (FireAuth, FireStore)
 
-## Development server
+## Co jest zaimplementowane?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Każdy zarejestrowany użytkownik ma swoją rolę (Dostępne: Admin, Nauczyciel, Uczeń).
+- Dane są aktualizaowane na bieżąco (głównie przez fireStore).
+- Możliwość zalogowania się przy użyciu konta Google i przy użyciu kombinacji email / hasło.
+- Przejrzysty design UI sprawia, że korzystanie z aplikacji nie jest męczące.
+- Dzięki CKEditor 5 ogłoszenia są czytelne.
+- Cała aplikacja jest responsywna.
 
-## Code scaffolding
+# Aplikacja jest cały czas rozbudowywana
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To czym się dzielę na chwilę obecną to rendery i początkowa faza projektu
+Oto co jeszcze zostało do zaimplenentowania:
 
-## Build
+- [ ] Napisać testy e2e
+- [ ] Dokończyć panel zarządzania nauczyciela
+- [ ] Stworzyć przejrzyste UI dla ucznia/rodzica i wyświetlać dane ucznia
+- [ ] Stworzyć panel administratora który umożliwi zarządzanie zarejestrowanymi kontami, przypisywać je do poszczególnych uczniów oraz przyspisywać role.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Screenshoty z appki
 
-## Running unit tests
+Zarządzanie ogłoszeniami       |     Zarządzanie uczniami      
+:-------------------------:|:-------------------------:
+<img src="https://user-images.githubusercontent.com/59890819/75770430-30719500-5d48-11ea-98e0-6e6b081086d1.PNG" width="200" alt=""> | <img src="https://user-images.githubusercontent.com/59890819/75770440-35364900-5d48-11ea-9c20-4e956583b74b.PNG" width="200" alt=""> 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Zarządzanie uczniami      |  Logowanie do aplikacji       
+:-------------------------:|:-------------------------:
+<img src="https://user-images.githubusercontent.com/59890819/75770449-39626680-5d48-11ea-95b2-0bb17611426e.PNG" width="200" alt=""> | <img src="https://user-images.githubusercontent.com/59890819/75770455-3d8e8400-5d48-11ea-9e96-840b5b5c5564.PNG" width="200" alt=""> 
 
-## Running end-to-end tests
+Tworzenie / Modyfikacja ucznia      |  Panel boczny ucznia     
+:-------------------------:|:-------------------------:
+<img src="https://user-images.githubusercontent.com/59890819/75770463-41220b00-5d48-11ea-9c93-4a2d5fddcf88.PNG" width="200" alt=""> | <img src="https://user-images.githubusercontent.com/59890819/75770471-441cfb80-5d48-11ea-8330-79cfdc225f8a.PNG" width="200" alt=""> 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Żeby uruchomić appkę u siebie należy: 
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Zmodyfikować plik environments/environment.ts i wrzucić do niego swoje dane aplikacji Firebase
+- w konsole npm init (zainstaluje to potrzebne moduły)
+- w konsole ng serve (jeżeli mamy CLI), w przeciwnym razie npm start
